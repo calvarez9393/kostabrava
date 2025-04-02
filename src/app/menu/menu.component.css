@@ -1,0 +1,43 @@
+nav {
+    background-color: #A51D36;
+}
+
+img {
+    width: 15em;
+}
+
+
+ul li a {
+    color: white;
+    font-size: 1.6em;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul li a:hover {
+  padding: 5px 15px;
+  background-color: white;
+  text-decoration: none;
+  border-radius: 50px;
+  color: #A51D36;
+}
+
+
+button{
+  color: white  ;
+}
+
+button span {
+  color: white;
+}
+
+.navbar-nav {
+  display: flex; /* Activar el modo flexbox */
+  justify-content: center; /* Centrar el contenido en el eje principal */
+  width: 100%; /* Establecer el ancho al 100% */
+  padding: auto;
+}
+
+.navbar-nav li {
+  margin: 0 30px; /* Añadir un margen a los elementos de la lista */
+}

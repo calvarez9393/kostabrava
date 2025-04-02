@@ -1,0 +1,32 @@
+<div class="row">
+  <p-toast></p-toast>
+  <div class="col-md-6 col-12 mb-3">
+    <h1 class="text-center m-2">Deja tus confecciones empresariales en las manos de especialistas</h1>
+    <p class="parrafoquienessomos ps-3">Respaldados por la tradición y calidad de una empresa como Kosta Azul, nos
+      convertimos
+      en la mejor opción para la producción de dotaciones.</p>
+  </div>
+
+  <div class="col-md-6 col-12 p-3">
+
+    <div class="formulario p-3">
+      <h2 class="text-center textformulario">Contáctanos</h2>
+      <form [formGroup]="formulario">
+        <div class="mb-3">
+          <input formControlName="nombre" class="form-control" placeholder="Nombre completo">
+        </div>
+        <div class="input-group mb-3">
+          <input formControlName="correo" type="email" class="form-control me-2 " placeholder="Email">
+          <input formControlName="telefono" type="number" class="form-control" placeholder="Telefono">
+        </div>
+        <div class="mb-3">
+          <input formControlName="empresa" type="text" class="form-control" placeholder="Nombre de la empresa">
+        </div>
+        <div class="mb-3">
+          <textarea formControlName="mensaje" type="text" class="form-control" placeholder="Mensaje"></textarea>
+        </div>
+        <button [disabled]="formulario.invalid" (click)="guardarFormulario()" class="btn">ENVIAR</button>
+      </form>
+    </div>
+  </div>
+</div>

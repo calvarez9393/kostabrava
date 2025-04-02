@@ -1,0 +1,107 @@
+.banner {
+  width: 100%;
+  animation: crecer 10s ease-in-out infinite alternate; /* Animación */
+}
+
+@keyframes crecer {
+  0% {
+    transform: scale(1, 1); /* Tamaño inicial */
+  }
+  50% {
+    transform: scale(1, 1.05); /* Crecimiento máximo */
+  }
+  100% {
+    transform: scale(1, 1); /* Tamaño inicial */
+  }
+}
+
+h1{
+  font-weight: bold;
+  margin-top: 3%;
+  padding: 5%;
+  color: #a51d36;
+  font-size: 50px;
+  text-transform: capitalize;
+}
+
+.parrafoquienessomos{
+  font-size: 22px;
+  margin: 3%;
+  text-align: justify;
+}
+
+.divvideo {
+  display: flex;
+  align-items: center; /* Alinear verticalmente el contenido */
+  justify-content: center;
+}
+
+video {
+  margin-top: 3%;
+  border-radius: 20px; /* Añadir bordes redondeados */
+  width: 90%;
+  height: 90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Añadir sombra */
+}
+
+.cardscatalogo{
+  cursor: pointer;
+}
+.cardscatalogo:hover {
+  margin-top: 3%;
+  transform: scale(1.02); /* Aumentar el tamaño al hacer hover */
+  transition: transform 0.5s; /* Añadir transición */
+  border-color: #a51d36; /* Cambiar el color del borde */
+}
+.material-symbols-outlined{
+  color: #a51d36;
+}
+.parrafoxqelegirnos{
+  font-size: 22px;
+  margin: 3%;
+  text-align: justify;
+}
+
+.img-round{
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 5%;
+  width: 60%;
+}
+
+.img-round-2{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  margin: auto;
+  width: 80%;
+}
+
+.btn{
+  background-color: #a51d36;
+  color:white;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+
+.btn:hover{
+  background-color: white;
+  color: #a51d36;
+  border: #a51d36 solid;
+  border-color: #a51d36 ;
+}
+
+.formulario{
+  padding: 5%;
+  box-shadow: 3px 2px 10px 1px rgba(94, 92, 92, 0.918);
+  border-radius: 20px;
+}
+
+.textformulario{
+  color: #a51d36;
+  font-weight: bold;
+}
+

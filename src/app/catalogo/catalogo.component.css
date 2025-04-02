@@ -1,0 +1,37 @@
+h1{
+    font-weight: bold;
+    margin-top: 1%;
+    padding: 1%;
+    color: #a51d36;
+    font-size: 30px;
+    text-transform: capitalize;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    
+  }
+  
+li {
+    display: inline;
+    padding: 5px 10px 5px 10px;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: #fdfdfd;
+    border: #a51d36 solid;
+    color: #a51d36;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+li:hover{
+    background-color: #a51d36;
+    border: #fdfdfd solid;
+    color: #fdfdfd;
+    font-weight: bold;
+}
+
+img{
+  cursor: pointer;
+}

@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-12">
+    <img class="banner" width="100" src="assets/banners/BANNER_PRINCIPAL_desktop-01-2048x930.jpg"
+      alt="Banner Principal">
+  </div>
+  <div class="col-md-6 col-12 divvideo">
+    <iframe src="https://drive.google.com/file/d/1HjOFdkhIM8c3tAMyBu5S53xAzM4YRt0v/preview" width="640" height="480" allow="autoplay"></iframe>
+  </div>
+  <div class="col-md-6 col-12" id="quienes-somos">
+    <hr>
+    <h1 class="text-center">Quienes Somos:</h1>
+    <p class="parrafoquienessomos">
+      Kosta Brava es la marca de Dotaciones de Kosta Azul, Empresa Colombiana con más de 55 años de experiencia en el
+      mercado textil y de confecciones.
+    </p>
+    <p class="parrafoquienessomos">
+      Somos especialistas en el diseño, desarrollo, producción y comercialización de prendas de vestir, con un talento
+      humano capacitado, comprometido y orientado a superar las expectativas de nuestros clientes
+    </p>
+  </div>
+  <div class="col" id="catalogo">
+    <hr>
+    <h1 class="text-center">CATÁLOGO</h1>
+    <div class="row container-fluid">
+      <div class="col-12 col-md-3 text-center cardscatalogo" title="Ver Catálogo">
+        <div class="card">
+          <img src="assets/masculino.jpg" alt="" class="card-img-top" [routerLink]="['catalogo/masculino']">
+          <div class="card-body">
+            <h4>Ejecutivo Masculino</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 text-center cardscatalogo" title="Ver Catálogo" [routerLink]="['catalogo/femenino']">
+        <div class="card">
+          <img src="assets/femenino.jpg" alt="" class="card-img-top">
+          <div class="card-body">
+            <h4>Ejecutivo Femenino</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 text-center cardscatalogo" title="Ver Catálogo" [routerLink]="['catalogo/operativo']">
+        <div class="card">
+          <img src="assets/operativo.jpg" alt="" class="card-img-top">
+          <div class="card-body">
+            <h4>Operativo</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-3 text-center cardscatalogo" title="Ver Catálogo" [routerLink]="['catalogo/calzado']">
+        <div class="card">
+          <img src="assets/calzado.jpg" alt="" class="card-img-top">
+          <div class="card-body">
+            <h4>Calzado</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12">
+    <h1 class="text-center">NUESTROS CLIENTES</h1>
+    <hr>
+    <div class="card">
+      <p-carousel [value]="items" [numVisible]="4" [numScroll]="6" [circular]="true"
+        [responsiveOptions]="responsiveOptions" [autoplayInterval]="2000">
+        <ng-template let-item pTemplate="item">
+          <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+            <div class="mb-3">
+              <img src="{{ item.url}}" [alt]="item.title" class="img-fluid">
+            </div>
+          </div>
+        </ng-template>
+      </p-carousel>
+    </div>
+    <hr>
+    <h1 class="text-center">CONOCE A NUESTRO EQUIPO <br> DE ASESORES</h1>
+  </div>
+  <div class="col-12">
+    <div class="row container-fluid mb-3">
+      <div class="col-12 col-md-6 text-center p-3" *ngFor="let empleado of empleados">
+        <div class="card">
+          <img [src]="empleado.url" alt="empleado.nombre" class="card-img-top img-round" width="50">
+          <div class="card-body">
+            <h2 class="card-title">{{empleado.nombre}}</h2>
+            <p class="card-text">
+              <span class="material-symbols-outlined " style="margin:auto;">
+                mail
+              </span>
+              <span style="font-size: 20px;"> {{empleado.correo}}</span>
+            </p>
+            <p class="card-text">
+              <span class="material-symbols-outlined">
+                call
+              </span>
+              <span style="font-size: 20px;">{{ empleado.telefono}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-12 mb-3">
+    <h1 class="text-center">¿Porqué Elegirnos?</h1>
+    <p class="parrafoquienessomos p-3">Nuestras prendas son confeccionadas con telas de alta calidad. Son sometidas a
+      pruebas de laboratorio, cuentan
+      con mezclas de algodón y poliéster para poder brindar durabilidad, frescura y comfort a nuestras prendas.</p>
+  </div>
+  <div class="col-md-6 col-12">
+    <img src="assets/banners/PORQUE-ELEGIRNOS-01-2048x1365.jpg" alt="" class="img-round-2">
+    <hr>
+  </div>
+  <app-formulario class="col-12" id="contacto"></app-formulario>
+  <div class="btn-wsp">
+    <a href="https://api.whatsapp.com/send?phone=573104142337"  target="_blank">
+        <img src="assets/whatsapp.png" alt="">
+    </a>
+  </div>
+</div>

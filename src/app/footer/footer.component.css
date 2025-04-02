@@ -1,0 +1,44 @@
+footer {
+    background-color: #7b242f;
+}
+img {
+    width: 15em;
+}
+
+ul{
+    list-style: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1%;
+}
+
+.decoration{
+    color: #53030d;
+    font-weight: bold;
+}
+
+.titulo{
+    padding: 5%;
+    color:white;
+}
+
+.contacto{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1%; 
+}
+
+.material-symbols-outlined{
+    position:absolute;
+    margin-top: 4px; 
+    margin-left: -25px;
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 1%; 
+}
