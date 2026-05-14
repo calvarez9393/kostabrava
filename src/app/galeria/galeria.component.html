@@ -8,7 +8,7 @@
     </div>
     <div class="kb-gallery-meta">
       <span class="kb-gallery-count">
-        {{ imagenes?.length || 0 }} {{ (imagenes?.length || 0) === 1 ? 'imagen' : 'imágenes' }}
+        {{ imagenes.length }} {{ imagenes.length === 1 ? 'imagen' : 'imágenes' }}
       </span>
       <button
         class="kb-gallery-close"
@@ -26,8 +26,8 @@
       [responsiveOptions]="responsiveOptions"
       [circular]="true"
       [numVisible]="5"
-      [showItemNavigators]="(imagenes?.length ?? 0) > 1"
-      [showThumbnails]="(imagenes?.length ?? 0) > 1"
+      [showItemNavigators]="imagenes.length > 1"
+      [showThumbnails]="imagenes.length > 1"
       [showIndicators]="false"
       [showItemNavigatorsOnHover]="false">
       <ng-template pTemplate="item" let-item>

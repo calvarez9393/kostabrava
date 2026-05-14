@@ -1,22 +1,24 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provideZoneChangeDetection } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { CarouselModule } from 'primeng/carousel';
+import { GalleriaModule } from 'primeng/galleria';
+import { ToastModule } from 'primeng/toast';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
-import { RevealDirective } from './reveal.directive';
 import { MenuComponent } from './menu/menu.component';
-import { CarouselModule } from 'primeng/carousel';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
 import { FormularioComponent } from './formulario/formulario.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { GaleriaComponent } from './galeria/galeria.component';
-import { GalleriaModule } from 'primeng/galleria';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { ToastModule } from 'primeng/toast';
+import { RevealDirective } from './reveal.directive';
 
 @NgModule({
   declarations: [
@@ -32,15 +34,28 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    ReactiveFormsModule,
     CarouselModule,
     GalleriaModule,
     NgbModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ToastModule
+    ToastModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideHttpClient(withInterceptorsFromDi()),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: false,
+          cssLayer: {
+            name: 'primeng',
+            order: 'primeng',
+          },
+        },
+      },
+    }),
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

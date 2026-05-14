@@ -205,30 +205,73 @@
   background-color: var(--kb-bg);
   border-radius: var(--kb-radius);
   border: 1px solid var(--kb-border);
-  padding: 0.5rem 1rem;
+  padding: 1rem 1.25rem 1.5rem;
+}
+
+/* Carrusel PrimeNG: más aire entre slides */
+:host ::ng-deep .kb-carousel-wrap .p-carousel-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .kb-client-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem 0.75rem;
+  padding: 1.5rem 1rem;
+  min-height: 140px;
+}
+
+/* Fondo uniforme + aislamiento para “borrar” blancos del logo (mix-blend) */
+.kb-client-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 280px;
+  min-height: 120px;
+  padding: 1rem 1.25rem;
+  background-color: var(--kb-bg);
+  border-radius: var(--kb-radius-sm);
+  isolation: isolate;
 }
 
 .kb-client-logo {
-  max-height: 54px;
-  max-width: 130px;
+  max-height: 100px;
+  max-width: 240px;
   width: auto;
+  height: auto;
   object-fit: contain;
-  filter: grayscale(0.6);
-  opacity: 0.75;
+  /* Integra fondos blancos/grises del PNG con el gris del contenedor */
+  mix-blend-mode: multiply;
+  filter: grayscale(0.35) contrast(1.08);
+  opacity: 0.92;
   transition: filter var(--kb-transition), opacity var(--kb-transition), transform var(--kb-transition);
 }
 
-.kb-client-logo:hover {
-  filter: grayscale(0);
+.kb-client-logo-wrap:hover .kb-client-logo {
+  filter: grayscale(0) contrast(1.05);
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.06);
+}
+
+@media (min-width: 992px) {
+  .kb-client-item {
+    min-height: 160px;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .kb-client-logo-wrap {
+    max-width: 320px;
+    min-height: 140px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .kb-client-logo {
+    max-height: 120px;
+    max-width: 280px;
+  }
 }
 
 /* ─── Team cards ────────────────────────────────────────── */

@@ -16,7 +16,8 @@ export interface Empleado {
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+  styleUrls: ['./inicio.component.css'],
+  standalone: false,
 })
 export class InicioComponent implements OnInit {
 
@@ -27,7 +28,7 @@ export class InicioComponent implements OnInit {
   onWindowScroll(): void {
     if (!this.rafPending) {
       window.requestAnimationFrame(() => {
-        this.scrollY = window.pageYOffset;
+        this.scrollY = window.scrollY;
         this.rafPending = false;
       });
       this.rafPending = true;
@@ -85,10 +86,9 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
     this.responsiveOptions = [
-      { breakpoint: '1199px', numVisible: 4, numScroll: 1 },
-      { breakpoint: '991px',  numVisible: 3, numScroll: 1 },
-      { breakpoint: '768px',  numVisible: 2, numScroll: 1 },
-      { breakpoint: '576px',  numVisible: 1, numScroll: 1 }
+      { breakpoint: '1399px', numVisible: 3, numScroll: 1 },
+      { breakpoint: '991px', numVisible: 2, numScroll: 1 },
+      { breakpoint: '576px', numVisible: 1, numScroll: 1 },
     ];
   }
 }

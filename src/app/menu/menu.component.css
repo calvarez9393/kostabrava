@@ -117,22 +117,112 @@
   outline: none;
 }
 
-/* ─── Mobile collapse ───────────────────────────────────── */
-@media (max-width: 991.98px) {
-  .navbar-collapse {
-    background-color: var(--kb-red-dark);
-    padding: 0.75rem 0.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    margin-top: 0.5rem;
-    border-radius: 0 0 var(--kb-radius-sm) var(--kb-radius-sm);
-  }
+/* ═══ Offcanvas móvil: 100vw, parallax, slide desde la derecha ═══ */
+.kb-offcanvas-nav {
+  --kb-offcanvas-shift: 0px;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  background: transparent;
+  overflow: hidden;
+}
 
-  .kb-nav-link::after {
-    display: none;
-  }
+/* Capa parallax (mismo recurso que bandas del sitio) */
+.kb-offcanvas-parallax {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(135deg, rgba(120, 15, 32, 0.94) 0%, rgba(80, 10, 24, 0.92) 45%, rgba(45, 8, 18, 0.9) 100%),
+    url('../../assets/banners/BANNER_PRINCIPAL_desktop-01-2048x930.jpg');
+  background-size: cover;
+  background-position: center calc(45% + var(--kb-offcanvas-shift, 0px));
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  will-change: background-position;
+}
 
-  .kb-nav-cta {
-    display: inline-block;
-    margin-top: 0.25rem;
+@media (max-width: 767.98px) {
+  .kb-offcanvas-parallax {
+    background-attachment: scroll;
   }
+}
+
+.kb-offcanvas-inner {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+}
+
+.kb-offcanvas-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.kb-offcanvas-eyebrow {
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.kb-offcanvas-close {
+  opacity: 0.9;
+}
+
+.kb-offcanvas-body {
+  padding: 1.5rem 1.75rem 2.5rem;
+  flex: 1;
+}
+
+.kb-offcanvas-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.kb-offcanvas-link {
+  font-family: 'Lexend', sans-serif;
+  font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+  font-weight: 600;
+  color: #fff !important;
+  padding: 0.85rem 1rem !important;
+  border-radius: var(--kb-radius-sm);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background-color var(--kb-transition), border-color var(--kb-transition),
+              transform var(--kb-transition);
+}
+
+.kb-offcanvas-link:hover,
+.kb-offcanvas-link:focus-visible {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left-color: rgba(255, 255, 255, 0.85);
+  transform: translateX(-4px);
+}
+
+.kb-offcanvas-cta {
+  margin-top: 0.75rem;
+  align-self: flex-start;
+  background: #fff !important;
+  color: var(--kb-red-dark) !important;
+  font-weight: 700 !important;
+  padding: 0.75rem 1.5rem !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.kb-offcanvas-cta:hover,
+.kb-offcanvas-cta:focus-visible {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-left-color: transparent !important;
+  transform: translateY(-2px);
 }

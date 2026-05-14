@@ -1,11 +1,11 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 
-@Directive({ selector: '[kbReveal]' })
+@Directive({ selector: '[kbReveal]', standalone: false })
 export class RevealDirective implements OnInit, OnDestroy {
   @Input('kbReveal') delay: number = 0;
   private observer!: IntersectionObserver;
 
-  constructor(private el: ElementRef) {}
+  constructor(private readonly el: ElementRef) {}
 
   ngOnInit(): void {
     const el = this.el.nativeElement as HTMLElement;

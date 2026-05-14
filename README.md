@@ -1,6 +1,6 @@
 # Kosta Brava — Sitio Web Corporativo
 
-Sitio web B2B de **Kosta Brava**, marca de dotaciones empresariales de Kosta Azul S.A.S. Desarrollado en Angular 16 con Bootstrap 5, PrimeNG y ng-bootstrap.
+Sitio web B2B de **Kosta Brava**, marca de dotaciones empresariales de Kosta Azul S.A.S. Desarrollado en Angular 21 con Bootstrap 5, PrimeNG 21 y ng-bootstrap 20.
 
 ---
 
@@ -26,24 +26,24 @@ Sitio web B2B de **Kosta Brava**, marca de dotaciones empresariales de Kosta Azu
 
 | Tecnología | Versión | Uso |
 |---|---|---|
-| Angular | 16.2 | Framework principal |
-| TypeScript | 5.1 | Lenguaje |
-| Bootstrap | 5.3 | Layout y grid responsivo (CDN) |
-| PrimeNG | 16.9 | Carousel, Galleria, Toast |
-| ng-bootstrap | 15.1 | Modales |
-| HttpClient | — | Envío de formulario de contacto |
+| Angular | 21.2 | Framework principal (NgModule + nuevo `@angular/build` con esbuild) |
+| TypeScript | 5.9 | Lenguaje |
+| Bootstrap | 5.3 | Layout y grid responsivo |
+| PrimeNG | 21.1 | Carousel, Galleria, Toast (con `@primeuix/themes` — preset Aura) |
+| ng-bootstrap | 20.0 | Modales |
+| HttpClient | — | Envío de formulario de contacto (vía `provideHttpClient`) |
 | Google Fonts | — | Lexend + Source Sans 3 |
 
 ---
 
 ## Requisitos previos
 
-- Node.js **18+**
-- npm **9+**
-- Angular CLI **16**
+- Node.js **^20.19.0** o **^22.12.0** o **>=24.0.0**
+- npm **>=8**
+- Angular CLI **21**
 
 ```bash
-npm install -g @angular/cli@16
+npm install -g @angular/cli@21
 ```
 
 ---
@@ -81,11 +81,11 @@ npm start
 ```
 kostabrava/
 ├── src/
-│   ├── index.html               # Punto de entrada, meta tags SEO
+│   ├── index.html               # Punto de entrada, meta tags SEO, carga de fuentes
 │   ├── styles.css               # Estilos globales, design tokens, animaciones
-│   ├── main.ts
+│   ├── main.ts                  # Bootstrap del AppModule
 │   └── app/
-│       ├── app.module.ts        # Módulo raíz, declaraciones globales
+│       ├── app.module.ts        # Módulo raíz, providers modernos (provideHttpClient, providePrimeNG)
 │       ├── app-routing.module.ts
 │       ├── app.component.*
 │       ├── reveal.directive.ts  # Directiva scroll-reveal (kbReveal)
@@ -103,10 +103,12 @@ kostabrava/
 │   ├── banners/      # Imágenes del hero y banners parallax
 │   ├── catalogo/     # Imágenes de productos del catálogo
 │   └── logos/        # Logos de clientes corporativos
-├── angular.json
+├── angular.json      # Configuración del builder @angular/build:application
 ├── package.json
-└── tsconfig.json
+└── tsconfig.json     # TS 5.9 con module: "preserve"
 ```
+
+> Todos los componentes están declarados en `AppModule` con `standalone: false`. Si en el futuro se migra a arquitectura standalone, ejecutar el schematic `ng generate @angular/core:standalone`.
 
 ---
 
@@ -595,12 +597,49 @@ server {
 
 ## Pendientes / Mejoras sugeridas
 
-- [ ] Implementar Angular Universal (SSR) para mejorar SEO e indexación por crawlers
+- [ ] Migrar componentes a arquitectura **standalone** (eliminar `AppModule`) para alinearse con la dirección oficial de Angular
+- [ ] Implementar **SSR** con `@angular/ssr` (`ng add @angular/ssr`) para mejorar SEO e indexación por crawlers
+- [ ] Activar **zoneless change detection** (`provideZonelessChangeDetection()`) y remover `zone.js` para reducir el bundle
+- [ ] Mover las credenciales hard-codeadas del `SendCorreosService` a variables de entorno
 - [ ] Configurar redirección HTTP→HTTPS y www→sin-www en el servidor
 - [ ] Mover datos de asesores y clientes a una API o archivo JSON externo para facilitar la edición
-- [ ] Optimizar imágenes del catálogo a formato WebP para reducir tiempo de carga
+- [ ] Optimizar imágenes del catálogo a formato **WebP/AVIF** para reducir tiempo de carga
 - [ ] Completar los links definitivos de redes sociales en el footer
 - [ ] Agregar página 404 personalizada
+
+---
+
+## Historial de migraciones
+
+### Angular 16 → 21 (mayo 2026)
+
+- **Framework**: Angular 16.2 → 21.2 (saltando 5 versiones mayores)
+- **Builder**: `@angular-devkit/build-angular:browser` → **`@angular/build:application`** (basado en esbuild + Vite, 4× más rápido)
+- **Providers modernos**:
+  - `HttpClientModule` → `provideHttpClient(withInterceptorsFromDi())`
+  - Eliminado `@angular/animations` (PrimeNG 21 y ng-bootstrap 20 usan animaciones CSS nativas)
+  - Añadido `provideZoneChangeDetection({ eventCoalescing: true })` para mejor performance
+- **PrimeNG 16 → 21**: nueva arquitectura de theming con `@primeuix/themes` (preset **Aura**) configurado vía `providePrimeNG()`. Eliminados los `@import` de `primeng/resources/...` (ya no existen)
+- **ng-bootstrap 15 → 20**
+- **TypeScript 5.1 → 5.9**, `module: "preserve"`, `moduleResolution: "bundler"`
+- **Eliminadas dependencias no usadas**: `emailjs-com` (3.x deprecada, código nunca la importó)
+- **Componentes**: marcados con `standalone: false` para mantener compatibilidad con `AppModule` (el default cambió a `true` en Angular 19+)
+- **Código modernizado**:
+  - `window.pageYOffset` (deprecado) → `window.scrollY`
+  - `FormBuilder` → patrón `inject()` + `nonNullable.group()` para evitar non-null assertions
+  - Cleanup de imports no usados y typos (`disosito` → mensajes claros de error)
+
+### Resultados medibles
+
+| Métrica | Antes | Después |
+|---|---|---|
+| Tiempo de build dev | 7.6 s | **1.6 s** |
+| Tiempo de build prod | n/a | **2.5 s** |
+| Bundle dev (raw) | 5.26 MB | **585 KB** |
+| Bundle prod (transferencia gzip) | n/a | **212 KB** |
+| Paquetes npm | 1014 | **554** |
+| Vulnerabilidades npm | 71 (1 crítica, 38 altas) | **0** |
+| Warnings de compilación | 4 (NG8107) | **0** |
 
 ---
 

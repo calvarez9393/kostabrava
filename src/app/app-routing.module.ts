@@ -1,19 +1,17 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioComponent } from './inicio/inicio.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
-import { GaleriaComponent } from './galeria/galeria.component';
 
 const routes: Routes = [
-  {path: '', component: InicioComponent},
-  {path: 'catalogo/:id', component: CatalogoComponent},
-  {path: 'galeria', component: GaleriaComponent},
-  {path: '**', redirectTo: ''}
-
+  { path: '', component: InicioComponent },
+  { path: 'catalogo/:id', component: CatalogoComponent },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
+

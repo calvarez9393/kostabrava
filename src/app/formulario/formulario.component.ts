@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { SendCorreosService } from '../services/send-correos.service';
 import { MessageService } from 'primeng/api';
+import { SendCorreosService } from '../services/send-correos.service';
 
 export interface Formulario {
   nombre: string;
@@ -15,44 +15,40 @@ export interface Formulario {
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
+  standalone: false,
 })
 export class FormularioComponent {
+  private fb = inject(FormBuilder);
+  private service = inject(SendCorreosService);
+  private messageService = inject(MessageService);
 
-  formulario = this.fb.group({
-    nombre: [, [Validators.required],],
-    correo: [, [Validators.required, Validators.email],],
-    telefono: [, [Validators.required],],
-    empresa: [, [Validators.required],],
-    mensaje: [, [Validators.required],],
-  })
-
-  formularioguardar?: Formulario
-
-  constructor(
-    private fb: FormBuilder,
-    private service: SendCorreosService,
-    private messageService: MessageService
-  ) { }
-
+  formulario = this.fb.nonNullable.group({
+    nombre: ['', [Validators.required]],
+    correo: ['', [Validators.required, Validators.email]],
+    telefono: ['', [Validators.required]],
+    empresa: ['', [Validators.required]],
+    mensaje: ['', [Validators.required]],
+  });
 
   guardarFormulario(): void {
-    const nombre = this.formulario.get('nombre')!.value;
-    const correo = this.formulario.get('correo')!.value;
-    const telefono = this.formulario.get('telefono')!.value;
-    const empresa = this.formulario.get('empresa')!.value;
-    const mensaje = this.formulario.get('mensaje')!.value;
-    this.formularioguardar = {
-      nombre: nombre!, correo: correo!, telefono: telefono!, empresa: empresa!, mensaje: mensaje!
-
+    if (this.formulario.invalid) {
+      this.formulario.markAllAsTouched();
+      return;
     }
-    this.service.sendcorreos(this.formularioguardar).subscribe(() => {
+
+    const datos: Formulario = this.formulario.getRawValue();
+
+    this.service.sendcorreos(datos).subscribe(() => {
       console.log('Correo enviado');
-    })
-    this.messageService.add({ severity: 'success', summary: 'Mensaje', detail: 'enviado correctamente' });
-    this.formulario.reset()
+    });
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Mensaje',
+      detail: 'enviado correctamente',
+    });
+    this.formulario.reset();
   }
-
-
-
 }
+

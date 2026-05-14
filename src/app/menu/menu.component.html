@@ -10,13 +10,13 @@
       <img src="assets/logos/IMG_4175-2048x873.png" alt="Kosta Brava" class="kb-logo">
     </a>
 
-    <!-- Hamburger -->
+    <!-- Hamburger (solo móvil) -->
     <button
-      class="navbar-toggler kb-toggler"
+      class="navbar-toggler kb-toggler d-lg-none"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#kbMobileNav"
+      aria-controls="kbMobileNav"
       aria-expanded="false"
       aria-label="Abrir menú">
       <span aria-hidden="true">
@@ -24,23 +24,62 @@
       </span>
     </button>
 
-    <!-- Links -->
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+    <!-- Links escritorio -->
+    <div class="d-none d-lg-flex flex-grow-1 justify-content-end" id="navbarNavDesktop">
       <ul class="navbar-nav gap-1 align-items-lg-center">
         <li class="nav-item">
-          <a class="nav-link kb-nav-link" href="#">Inicio</a>
+          <a class="nav-link kb-nav-link" href="/" (click)="onDesktopNav($event, null)">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link kb-nav-link" href="#quienes-somos">Quiénes Somos</a>
+          <a class="nav-link kb-nav-link" href="/#quienes-somos" (click)="onDesktopNav($event, 'quienes-somos')">Quiénes Somos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link kb-nav-link" href="#catalogo">Catálogo</a>
+          <a class="nav-link kb-nav-link" href="/#catalogo" (click)="onDesktopNav($event, 'catalogo')">Catálogo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link kb-nav-link kb-nav-cta" href="#contacto">Contáctanos</a>
+          <a class="nav-link kb-nav-link kb-nav-cta" href="/#contacto" (click)="onDesktopNav($event, 'contacto')">Contáctanos</a>
         </li>
       </ul>
     </div>
 
   </div>
 </nav>
+
+<!-- Menú móvil: pantalla completa, entra desde la derecha, fondo parallax -->
+<div
+  class="offcanvas offcanvas-end kb-offcanvas-nav text-white border-0"
+  tabindex="-1"
+  id="kbMobileNav"
+  aria-labelledby="kbMobileNavLabel"
+  data-bs-scroll="false">
+  <div
+    class="kb-offcanvas-parallax"
+    [style.--kb-offcanvas-shift]="parallaxBgShift"
+    aria-hidden="true"></div>
+  <div class="kb-offcanvas-inner position-relative">
+    <div class="offcanvas-header kb-offcanvas-header">
+      <p class="kb-offcanvas-eyebrow mb-0" id="kbMobileNavLabel">Navegación</p>
+      <button
+        type="button"
+        class="btn-close btn-close-white kb-offcanvas-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Cerrar menú"></button>
+    </div>
+    <div class="offcanvas-body kb-offcanvas-body d-flex flex-column">
+      <ul class="navbar-nav kb-offcanvas-nav-list flex-grow-1 justify-content-center gap-1">
+        <li class="nav-item">
+          <a class="nav-link kb-offcanvas-link" href="/" (click)="onMobileNav($event, null)">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link kb-offcanvas-link" href="/#quienes-somos" (click)="onMobileNav($event, 'quienes-somos')">Quiénes Somos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link kb-offcanvas-link" href="/#catalogo" (click)="onMobileNav($event, 'catalogo')">Catálogo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link kb-offcanvas-link kb-offcanvas-cta" href="/#contacto" (click)="onMobileNav($event, 'contacto')">Contáctanos</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -10,17 +10,17 @@ export interface Image {
 @Component({
   selector: 'app-galeria',
   templateUrl: './galeria.component.html',
-  styleUrls: ['./galeria.component.css']
+  styleUrls: ['./galeria.component.css'],
+  standalone: false,
 })
 export class GaleriaComponent {
-
-  @Input() imagenes!: Image[];
-
-  constructor(public activeModal: NgbActiveModal) {}
+  @Input() imagenes: Image[] = [];
 
   responsiveOptions = [
     { breakpoint: '1024px', numVisible: 5 },
-    { breakpoint: '768px',  numVisible: 3 },
-    { breakpoint: '560px',  numVisible: 2 }
+    { breakpoint: '768px', numVisible: 3 },
+    { breakpoint: '560px', numVisible: 2 },
   ];
+
+  constructor(public activeModal: NgbActiveModal) {}
 }
