@@ -1,43 +1,138 @@
-nav {
-    background-color: #A51D36;
+/* ─── Navbar shell ──────────────────────────────────────── */
+.kb-navbar {
+  background-color: var(--kb-red);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 0.625rem 0;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-img {
-    width: 15em;
+.kb-navbar-scrolled {
+  background-color: var(--kb-red-dark);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
 }
 
-
-ul li a {
-    color: white;
-    font-size: 1.6em;
-    text-decoration: none;
-    font-weight: bold;
+/* ─── Logo ──────────────────────────────────────────────── */
+.kb-brand {
+  display: flex;
+  align-items: center;
 }
 
-ul li a:hover {
-  padding: 5px 15px;
-  background-color: white;
+.kb-logo {
+  width: 150px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+  transition: opacity var(--kb-transition);
+}
+
+.kb-brand:hover .kb-logo,
+.kb-brand:focus-visible .kb-logo {
+  opacity: 1;
+}
+
+/* ─── Nav links ─────────────────────────────────────────── */
+.kb-nav-link {
+  position: relative;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.88) !important;
+  padding: 0.5rem 0.875rem !important;
+  border-radius: var(--kb-radius-sm);
   text-decoration: none;
-  border-radius: 50px;
-  color: #A51D36;
+  transition: color var(--kb-transition), background-color var(--kb-transition);
 }
 
-
-button{
-  color: white  ;
+/* White underline indicator */
+.kb-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0.875rem;
+  right: 0.875rem;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button span {
-  color: white;
+.kb-nav-link:hover,
+.kb-nav-link:focus-visible {
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.14);
 }
 
-.navbar-nav {
-  display: flex; /* Activar el modo flexbox */
-  justify-content: center; /* Centrar el contenido en el eje principal */
-  width: 100%; /* Establecer el ancho al 100% */
-  padding: auto;
+.kb-nav-link:hover::after,
+.kb-nav-link:focus-visible::after {
+  transform: scaleX(1);
 }
 
-.navbar-nav li {
-  margin: 0 30px; /* Añadir un margen a los elementos de la lista */
+/* ─── CTA button (inverted on red bg) ───────────────────── */
+.kb-nav-cta {
+  color: var(--kb-red) !important;
+  background: #ffffff;
+  font-weight: 700;
+  padding: 0.5rem 1.25rem !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color var(--kb-transition), box-shadow var(--kb-transition),
+              transform var(--kb-transition);
+}
+
+.kb-nav-cta::after {
+  display: none;
+}
+
+.kb-nav-cta:hover,
+.kb-nav-cta:focus-visible {
+  color: var(--kb-red-dark) !important;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  transform: translateY(-1px);
+}
+
+/* ─── Hamburger ─────────────────────────────────────────── */
+.kb-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--kb-radius-sm);
+  color: #ffffff;
+  background: none;
+  display: flex;
+  align-items: center;
+  transition: border-color var(--kb-transition), background-color var(--kb-transition);
+}
+
+.kb-toggler:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.kb-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+/* ─── Mobile collapse ───────────────────────────────────── */
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    background-color: var(--kb-red-dark);
+    padding: 0.75rem 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin-top: 0.5rem;
+    border-radius: 0 0 var(--kb-radius-sm) var(--kb-radius-sm);
+  }
+
+  .kb-nav-link::after {
+    display: none;
+  }
+
+  .kb-nav-cta {
+    display: inline-block;
+    margin-top: 0.25rem;
+  }
 }

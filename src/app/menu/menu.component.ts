@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
+  scrolled = false;
 
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.scrolled = window.pageYOffset > 50;
+  }
 }

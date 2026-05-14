@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { RevealDirective } from './reveal.directive';
 import { MenuComponent } from './menu/menu.component';
 import { CarouselModule } from 'primeng/carousel';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,6 +27,7 @@ import { ToastModule } from 'primeng/toast';
     FormularioComponent,
     CatalogoComponent,
     GaleriaComponent,
+    RevealDirective,
   ],
   imports: [
     BrowserModule,

@@ -1,17 +1,309 @@
-/* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
-.btn-wsp{
-    position: fixed;
-    line-height: 55px;
-    bottom: 30px;
-    right: 30px;
-    text-align: end;
-    
-  
-  }
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-  .btn-wsp a img{
-    border-radius: 50%;
-    box-shadow: 2px 1px 3px 2px rgba(0, 0, 0, 0.5);
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --kb-red:        #A51D36;
+  --kb-red-dark:   #7b1528;
+  --kb-red-hover:  #8e1830;
+  --kb-red-light:  #fdf2f4;
+  --kb-navy:       #1e293b;
+  --kb-gray:       #64748b;
+  --kb-gray-light: #94a3b8;
+  --kb-border:     #e2e8f0;
+  --kb-bg:         #f8fafc;
+  --kb-white:      #ffffff;
+
+  --kb-shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --kb-shadow:    0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.05);
+  --kb-shadow-lg: 0 10px 30px rgba(0,0,0,0.14);
+
+  --kb-radius:    12px;
+  --kb-radius-sm: 8px;
+  --kb-transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Source Sans 3', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--kb-navy);
+  background-color: var(--kb-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lexend', system-ui, sans-serif;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--kb-navy);
+  margin: 0;
+}
+
+/* ─── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+  html { scroll-behavior: auto !important; }
+}
+
+/* ─── Section title parallax band ──────────────────────────── */
+.kb-title-band {
+  background-image:
+    linear-gradient(rgba(255, 248, 249, 0.91), rgba(253, 238, 241, 0.93)),
+    url('assets/banners/BANNER_PRINCIPAL_desktop-01-2048x930.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  padding: 2.75rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(165, 29, 54, 0.1);
+  border-bottom: 1px solid rgba(165, 29, 54, 0.1);
+}
+
+.kb-title-band-eyebrow {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--kb-red);
+  margin: 0 0 0.625rem;
+}
+
+.kb-title-band-heading {
+  font-family: 'Lexend', sans-serif;
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+  font-weight: 700;
+  color: var(--kb-red);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.kb-title-band-sub {
+  font-size: 1rem;
+  color: var(--kb-gray);
+  line-height: 1.65;
+  margin: 0.75rem auto 0;
+  max-width: 520px;
+}
+
+@media (max-width: 767.98px) {
+  .kb-title-band {
+    background-attachment: scroll;
+    padding: 2rem 0;
+  }
+}
+
+/* ─── Scroll-reveal (kbReveal directive) ────────────────────── */
+.kb-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kb-reveal.kb-reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Eyebrows — slide in from left */
+.kb-eyebrow.kb-reveal,
+.kb-band-eyebrow.kb-reveal,
+.kb-title-band-eyebrow.kb-reveal {
+  transform: translateX(-18px);
+}
+.kb-eyebrow.kb-reveal-in,
+.kb-band-eyebrow.kb-reveal-in,
+.kb-title-band-eyebrow.kb-reveal-in {
+  transform: translateX(0);
+}
+
+/* Section titles — rise with slight scale */
+.kb-section-title.kb-reveal,
+.kb-band-title.kb-reveal,
+.kb-title-band-heading.kb-reveal {
+  transform: translateY(36px) scale(0.97);
+  transition-duration: 0.75s;
+}
+.kb-section-title.kb-reveal-in,
+.kb-band-title.kb-reveal-in,
+.kb-title-band-heading.kb-reveal-in {
+  transform: translateY(0) scale(1);
+}
+
+/* Subtitles */
+.kb-title-band-sub.kb-reveal {
+  transform: translateY(20px);
+  transition-duration: 0.65s;
+}
+.kb-title-band-sub.kb-reveal-in {
+  transform: translateY(0);
+}
+
+/* CTA button — scales up */
+.kb-band-cta.kb-reveal {
+  transform: translateY(16px) scale(0.95);
+}
+.kb-band-cta.kb-reveal-in {
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kb-reveal,
+  .kb-eyebrow.kb-reveal,
+  .kb-band-eyebrow.kb-reveal,
+  .kb-title-band-eyebrow.kb-reveal,
+  .kb-section-title.kb-reveal,
+  .kb-band-title.kb-reveal,
+  .kb-title-band-heading.kb-reveal,
+  .kb-title-band-sub.kb-reveal,
+  .kb-band-cta.kb-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── WhatsApp floating button ──────────────────────────────── */
+.btn-wsp {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 1000;
+}
+
+.btn-wsp a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, var(--kb-red) 0%, var(--kb-red-dark) 100%);
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 0.7rem 1.25rem 0.7rem 1rem;
+  text-decoration: none;
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 20px rgba(165, 29, 54, 0.45), 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform var(--kb-transition), box-shadow var(--kb-transition),
+              background var(--kb-transition);
+}
+
+.btn-wsp a:hover {
+  background: linear-gradient(135deg, var(--kb-red-dark) 0%, #5c0f1e 100%);
+  box-shadow: 0 6px 28px rgba(165, 29, 54, 0.55), 0 3px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-wsp a:active {
+  transform: translateY(0);
+}
+
+.btn-wsp a:focus-visible {
+  outline: 3px solid var(--kb-red);
+  outline-offset: 3px;
+  border-radius: 50px;
+}
+
+.btn-wsp a svg {
+  flex-shrink: 0;
+}
+
+/* ─── PrimeNG Carousel overrides ────────────────────────── */
+.p-carousel .p-carousel-prev.p-button,
+.p-carousel .p-carousel-next.p-button {
+  background-color: var(--kb-red) !important;
+  border-color: var(--kb-red) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
+  width: 2.25rem !important;
+  height: 2.25rem !important;
+  box-shadow: var(--kb-shadow) !important;
+  transition: background-color 200ms, transform 200ms !important;
+}
+
+.p-carousel .p-carousel-prev.p-button:hover,
+.p-carousel .p-carousel-next.p-button:hover {
+  background-color: var(--kb-red-dark) !important;
+  border-color: var(--kb-red-dark) !important;
+  transform: scale(1.1) !important;
+}
+
+.p-carousel .p-carousel-prev.p-button:focus,
+.p-carousel .p-carousel-next.p-button:focus {
+  box-shadow: 0 0 0 3px rgba(165, 29, 54, 0.25) !important;
+}
+
+.p-carousel .p-carousel-indicator.p-highlight button {
+  background-color: var(--kb-red) !important;
+}
+
+/* ─── Gallery modal window ───────────────────────────────── */
+.kb-gallery-backdrop {
+  background-color: rgba(0, 0, 0, 0.92) !important;
+  opacity: 1 !important;
+}
+
+.kb-gallery-window .modal-dialog {
+  max-width: min(860px, 94vw) !important;
+}
+
+.kb-gallery-window .modal-content {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 14px !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8) !important;
+  overflow: hidden;
+}
+
+/* Galleria nav arrows */
+.kb-gallery-window .p-galleria .p-galleria-item-nav {
+  background: rgba(165, 29, 54, 0.65) !important;
+  border-radius: 50% !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  color: #fff !important;
+  margin: 0 0.5rem !important;
+  transition: background-color 200ms !important;
+}
+
+.kb-gallery-window .p-galleria .p-galleria-item-nav:hover {
+  background: var(--kb-red) !important;
+}
+
+/* Thumbnail strip */
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-container {
+  background-color: #0c0d10 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 0.75rem 1.25rem !important;
+  gap: 0.5rem !important;
+}
+
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item-current
+  .p-galleria-thumbnail-item-content img {
+  opacity: 1 !important;
+  box-shadow: 0 0 0 2px var(--kb-red) !important;
+  border-radius: 5px !important;
+}
+
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item-content img {
+  opacity: 0.45 !important;
+  transition: opacity 200ms !important;
+  border-radius: 5px !important;
+}
+
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item-content:hover img {
+  opacity: 1 !important;
+}

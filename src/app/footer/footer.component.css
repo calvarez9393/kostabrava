@@ -1,44 +1,190 @@
-footer {
-    background-color: #7b242f;
-}
-img {
-    width: 15em;
-}
-
-ul{
-    list-style: none;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 1%;
+/* ─── Footer shell ──────────────────────────────────────── */
+.kb-footer {
+  background: linear-gradient(160deg, #781020 0%, #4d0b18 100%);
+  color: var(--kb-white);
 }
 
-.decoration{
-    color: #53030d;
-    font-weight: bold;
+/* ─── Gradient accent top bar ───────────────────────────── */
+.kb-footer-accent {
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b88 0%, #ffd6de 50%, #ff6b88 100%);
+  opacity: 0.55;
 }
 
-.titulo{
-    padding: 5%;
-    color:white;
+/* ─── Logo ──────────────────────────────────────────────── */
+.kb-footer-logo {
+  width: 150px;
+  height: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.88;
 }
 
-.contacto{
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 1%; 
+/* ─── Tagline ───────────────────────────────────────────── */
+.kb-footer-tagline {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 280px;
 }
 
-.material-symbols-outlined{
-    position:absolute;
-    margin-top: 4px; 
-    margin-left: -25px;
+/* ─── Social icons ──────────────────────────────────────── */
+.kb-footer-social {
+  display: flex;
+  gap: 0.5rem;
 }
-a{
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 1%; 
+
+.kb-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: background-color var(--kb-transition), color var(--kb-transition),
+              border-color var(--kb-transition), transform var(--kb-transition);
+}
+
+.kb-social-link:hover,
+.kb-social-link:focus-visible {
+  background-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--kb-white);
+  transform: translateY(-2px);
+}
+
+.kb-social-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* ─── Section heading ───────────────────────────────────── */
+.kb-footer-heading {
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 180, 200, 0.9);
+  margin: 0 0 1.125rem;
+  position: relative;
+  padding-bottom: 0.625rem;
+}
+
+.kb-footer-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: rgba(255, 180, 200, 0.45);
+  border-radius: 1px;
+}
+
+/* ─── Nav links ─────────────────────────────────────────── */
+.kb-footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.kb-footer-nav a {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color var(--kb-transition), padding-left var(--kb-transition);
+  display: inline-flex;
+  align-items: center;
+}
+
+.kb-footer-nav a:hover,
+.kb-footer-nav a:focus-visible {
+  color: var(--kb-white);
+  padding-left: 4px;
+}
+
+/* ─── Location block ────────────────────────────────────── */
+.kb-footer-location {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.kb-footer-location-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 180, 200, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* ─── Address ───────────────────────────────────────────── */
+.kb-footer-address {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.52);
+  line-height: 1.7;
+  margin-bottom: 0.6rem;
+}
+
+.kb-footer-address strong {
+  color: rgba(255, 255, 255, 0.88);
+  display: block;
+  margin-bottom: 0.15rem;
+  font-size: 0.88rem;
+}
+
+/* ─── Phone ─────────────────────────────────────────────── */
+.kb-footer-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: color var(--kb-transition);
+}
+
+.kb-footer-phone:hover {
+  color: var(--kb-white);
+}
+
+.kb-footer-phone svg {
+  color: rgba(255, 180, 200, 0.8);
+  flex-shrink: 0;
+}
+
+/* ─── Bottom bar ────────────────────────────────────────── */
+.kb-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.kb-footer-copy {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0;
+}
+
+.kb-footer-made {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.26);
+  margin: 0;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 export interface Item {
@@ -19,6 +19,25 @@ export interface Empleado {
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit {
+
+  scrollY = 0;
+  private rafPending = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    if (!this.rafPending) {
+      window.requestAnimationFrame(() => {
+        this.scrollY = window.pageYOffset;
+        this.rafPending = false;
+      });
+      this.rafPending = true;
+    }
+  }
+
+  get heroParallax(): string {
+    const shift = Math.min(this.scrollY * 0.28, 160);
+    return `translateY(${shift}px)`;
+  }
 
   empleados: Empleado[] = [
     {
@@ -51,56 +70,25 @@ export class InicioComponent implements OnInit {
       correo: 'analistadelicitaciones@kostazul.com',
       url: 'assets/asesores/ALEJANDRO-01-1-2048x2048.jpg'
     },
-    {
-      nombre: 'Asdrubal Manso Carrillo',
-      telefono: '3116423969',
-      correo: 'analista.nc@kostazul.com',
-      url: 'assets/asesores/HM2A7985.jpg'
-    },
-    {
-      nombre: 'Paola Andrea Manzano',
-      telefono: '3116423969',
-      correo: 'corporativos3@kostazul.com',
-      url: 'assets/asesores/HM2A7968.jpg'
-    }
   ];
 
   items: Item[] = [
-    { url: 'assets/logos/frisby-1.png', title: 'frisby' },
-    { url: 'assets/logos/comfamiliar-1.png', title: 'comfamiliar' },
-    { url: 'assets/logos/dmario-1.png', title: 'dmario' },
-    { url: 'assets/logos/epm-1.png', title: 'epm' },
-    { url: 'assets/logos/giros.png', title: 'giros' },
-    { url: 'assets/logos/terminal.png', title: 'terminal' }
-  ]
+    { url: 'assets/logos/frisby-1.png', title: 'Frisby' },
+    { url: 'assets/logos/comfamiliar-1.png', title: 'Comfamiliar' },
+    { url: 'assets/logos/dmario-1.png', title: 'D\' Mario' },
+    { url: 'assets/logos/epm-1.png', title: 'EPM' },
+    { url: 'assets/logos/giros.png', title: 'Giros' },
+    { url: 'assets/logos/terminal.png', title: 'Terminal' }
+  ];
 
   responsiveOptions: any[] | undefined;
-  tiempo: string = "2000";
 
   ngOnInit(): void {
     this.responsiveOptions = [
-      {
-        breakpoint: '1199px',
-        numVisible: 4,
-        numScroll: 1
-      },
-      {
-        breakpoint: '991px',
-        numVisible: 3,
-        numScroll: 1
-      },
-      {
-        breakpoint: '800px',
-        numVisible: 2,
-        numScroll: 1
-      },
-      {
-        breakpoint: '600px',
-        numVisible: 1,
-        numScroll: 1
-      }
+      { breakpoint: '1199px', numVisible: 4, numScroll: 1 },
+      { breakpoint: '991px',  numVisible: 3, numScroll: 1 },
+      { breakpoint: '768px',  numVisible: 2, numScroll: 1 },
+      { breakpoint: '576px',  numVisible: 1, numScroll: 1 }
     ];
   }
-
 }
-

@@ -1,31 +1,100 @@
-<div class="row">
-  <p-toast></p-toast>
-  <div class="col-md-6 col-12 mb-3">
-    <h1 class="text-center m-2">Deja tus confecciones empresariales en las manos de especialistas</h1>
-    <p class="parrafoquienessomos ps-3">Respaldados por la tradición y calidad de una empresa como Kosta Azul, nos
-      convertimos
-      en la mejor opción para la producción de dotaciones.</p>
+<p-toast></p-toast>
+<div class="row align-items-start g-5">
+  <!-- Left: pitch copy -->
+  <div class="col-md-6">
+    <span class="kb-form-eyebrow">¿Listo para comenzar?</span>
+    <h2 class="kb-form-title">Deja tus dotaciones en manos de especialistas</h2>
+    <p class="kb-form-text">
+      Respaldados por la tradición y calidad de Kosta Azul, somos la mejor opción para la
+      producción de dotaciones empresariales a medida.
+    </p>
   </div>
 
-  <div class="col-md-6 col-12 p-3">
+  <!-- Right: contact form -->
+  <div class="col-md-6">
+    <div class="kb-form-card">
+      <h3 class="kb-form-card-title">Contáctanos</h3>
+      <form [formGroup]="formulario" novalidate>
 
-    <div class="formulario p-3">
-      <h2 class="text-center textformulario">Contáctanos</h2>
-      <form [formGroup]="formulario">
-        <div class="mb-3">
-          <input formControlName="nombre" class="form-control" placeholder="Nombre completo">
+        <div class="kb-field">
+          <label for="nombre" class="kb-label">
+            Nombre completo <span class="kb-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="nombre"
+            formControlName="nombre"
+            class="form-control kb-input"
+            type="text"
+            placeholder="Ej: María García"
+            autocomplete="name">
         </div>
-        <div class="input-group mb-3">
-          <input formControlName="correo" type="email" class="form-control me-2 " placeholder="Email">
-          <input formControlName="telefono" type="number" class="form-control" placeholder="Telefono">
+
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <div class="kb-field">
+              <label for="correo" class="kb-label">
+                Correo electrónico <span class="kb-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="correo"
+                formControlName="correo"
+                class="form-control kb-input"
+                type="email"
+                placeholder="nombre@empresa.com"
+                autocomplete="email">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="kb-field">
+              <label for="telefono" class="kb-label">
+                Teléfono <span class="kb-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="telefono"
+                formControlName="telefono"
+                class="form-control kb-input"
+                type="tel"
+                placeholder="300 000 0000"
+                autocomplete="tel">
+            </div>
+          </div>
         </div>
-        <div class="mb-3">
-          <input formControlName="empresa" type="text" class="form-control" placeholder="Nombre de la empresa">
+
+        <div class="kb-field">
+          <label for="empresa" class="kb-label">
+            Empresa <span class="kb-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="empresa"
+            formControlName="empresa"
+            class="form-control kb-input"
+            type="text"
+            placeholder="Nombre de tu empresa"
+            autocomplete="organization">
         </div>
-        <div class="mb-3">
-          <textarea formControlName="mensaje" type="text" class="form-control" placeholder="Mensaje"></textarea>
+
+        <div class="kb-field">
+          <label for="mensaje" class="kb-label">
+            Mensaje <span class="kb-required" aria-hidden="true">*</span>
+          </label>
+          <textarea
+            id="mensaje"
+            formControlName="mensaje"
+            class="form-control kb-input kb-textarea"
+            placeholder="Cuéntanos qué necesitas…"
+            rows="4">
+          </textarea>
         </div>
-        <button [disabled]="formulario.invalid" (click)="guardarFormulario()" class="btn">ENVIAR</button>
+
+        <p class="kb-required-note"><span aria-hidden="true">*</span> Campos requeridos</p>
+
+        <button
+          type="submit"
+          [disabled]="formulario.invalid"
+          (click)="guardarFormulario()"
+          class="kb-btn-submit">
+          Enviar solicitud
+        </button>
       </form>
     </div>
   </div>

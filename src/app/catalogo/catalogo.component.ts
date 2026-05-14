@@ -392,10 +392,13 @@ export class CatalogoComponent implements OnInit {
     }
   }
 
-  abrir_imagenes(lista: Image[]){
-    console.log(lista);
-    const modalRef = this.modal.open(GaleriaComponent, 
-      {size: 'lg',});
+  abrir_imagenes(lista: Image[]): void {
+    const modalRef = this.modal.open(GaleriaComponent, {
+      size: 'xl',
+      windowClass: 'kb-gallery-window',
+      backdropClass: 'kb-gallery-backdrop',
+      centered: true
+    });
     modalRef.componentInstance.imagenes = lista;
   }
 
