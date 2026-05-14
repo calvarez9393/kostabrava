@@ -8,6 +8,7 @@ export interface Item {
 
 export interface Empleado {
   nombre: string;
+  cargo: string;
   telefono: string;
   correo: string;
   url: string;
@@ -42,35 +43,47 @@ export class InicioComponent implements OnInit {
 
   empleados: Empleado[] = [
     {
+      nombre: 'Nathalia Montes Munera',
+      cargo: 'Directora de Negocios Corporativos',
+      telefono: '3234929241',
+      correo: 'dirnegocioscorporativos@kostazul.com',
+      url: 'assets/asesores/NATHALIA-01-2048x2048.jpg'
+    },
+    {
       nombre: 'Luis Fernando Ladino',
+      cargo: 'Asesor de Ventas',
       telefono: '3168968248',
       correo: 'luisfernando.ladino@kostazul.com',
       url: 'assets/asesores/FERNANDO-LADINO-01-01-2048x2048.jpg'
     },
     {
       nombre: 'Eliana Osorio Galvis',
+      cargo: 'Asesor de Ventas',
       telefono: '3116423969',
       correo: 'corporativos2@kostazul.com',
       url: 'assets/asesores/ELIANA-01-1-2048x2048.jpg'
     },
     {
-      nombre: 'Nathalia Montes Munera',
-      telefono: '3234929241',
-      correo: 'dirnegocioscorporativos@kostazul.com',
-      url: 'assets/asesores/NATHALIA-01-2048x2048.jpg'
-    },
-    {
       nombre: 'Hector Hernan Correa Correa',
+      cargo: 'Asesor de Ventas',
       telefono: '3155323413',
       correo: 'corporativos@kostazul.com',
       url: 'assets/asesores/HECTOR-01-2048x2048.jpg'
     },
     {
       nombre: 'Jonathan Alejandro Henao Montoya',
+      cargo: 'Analista de Licitaciones',
       telefono: '3148752382',
       correo: 'analistadelicitaciones@kostazul.com',
       url: 'assets/asesores/ALEJANDRO-01-1-2048x2048.jpg'
     },
+    {
+      nombre: 'Rosa Mariannella Rivera Quintero',
+      cargo: 'Coordinadora de Negocios Corporativos',
+      telefono: '6063419393',
+      correo: 'asistente.comercial@kostazul.com',
+      url: 'assets/asesores/mariannella.png'
+    }
   ];
 
   items: Item[] = [

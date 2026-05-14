@@ -17,6 +17,13 @@
   margin: 0.75rem auto 0;
 }
 
+.kb-team-cargo {
+  font-size: 0.9rem;
+  color: var(--kb-red-dark);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
 /* ─── Typography helpers ────────────────────────────────── */
 .kb-eyebrow {
   display: inline-block;
