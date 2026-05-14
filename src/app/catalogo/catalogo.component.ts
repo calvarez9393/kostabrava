@@ -83,19 +83,19 @@ export class CatalogoComponent implements OnInit {
         hijos: [{ url: 'assets/catalogo/30-01-2-scaled.jpg' }]
       },
       {
-        clasificacion: 'Formal', url: 'assets/catalogo/34-01-2-scaled',
+        clasificacion: 'Formal', url: 'assets/catalogo/34-01-2-scaled.jpg',
         hijos: [{ url: 'assets/catalogo/34-01-2-scaled.jpg' }]
       },
       {
-        clasificacion: 'Formal', url: 'assets/catalogo/35-01-2-scaled',
+        clasificacion: 'Formal', url: 'assets/catalogo/35-01-2-scaled.jpg',
         hijos: [{ url: 'assets/catalogo/35-01-2-scaled.jpg' }]
       },
       {
-        clasificacion: 'Formal', url: 'assets/catalogo/39-01-2-scaled',
+        clasificacion: 'Formal', url: 'assets/catalogo/39-01-2-scaled.jpg',
         hijos: [{ url: 'assets/catalogo/39-01-2-scaled.jpg' }]
       },
       {
-        clasificacion: 'Formal', url: 'assets/catalogo/40-01-2-scaled',
+        clasificacion: 'Formal', url: 'assets/catalogo/40-01-2-scaled.jpg',
         hijos: [{ url: 'assets/catalogo/40-01-2-scaled.jpg' }]
       },
     ]
@@ -398,9 +398,10 @@ export class CatalogoComponent implements OnInit {
       size: 'xl',
       windowClass: 'kb-gallery-window',
       backdropClass: 'kb-gallery-backdrop',
-      centered: true
+      centered: true,
     });
-    modalRef.componentInstance.imagenes = lista;
+    // Copia superficial: nueva referencia para que PrimeNG detecte el cambio y el índice se reinicie bien.
+    modalRef.componentInstance.imagenes = lista.map((img) => ({ ...img }));
   }
 
 

@@ -19,24 +19,44 @@
     </div>
   </div>
 
-  <!-- Galleria body -->
+  <!-- Galleria body: flechas propias (Prime dentro del modal a veces no actualiza el slide) -->
   <div class="kb-gallery-body">
+    <div class="kb-gallery-stage" *ngIf="imagenes.length > 1">
+      <button
+        type="button"
+        class="kb-gallery-fab kb-gallery-fab-prev"
+        (click)="prevSlide()"
+        aria-label="Imagen anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <button
+        type="button"
+        class="kb-gallery-fab kb-gallery-fab-next"
+        (click)="nextSlide()"
+        aria-label="Imagen siguiente">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
     <p-galleria
       [value]="imagenes"
+      [activeIndex]="activeIndex"
+      (activeIndexChange)="onSlideChange($event)"
       [responsiveOptions]="responsiveOptions"
       [circular]="true"
       [numVisible]="5"
-      [showItemNavigators]="imagenes.length > 1"
+      [showItemNavigators]="false"
       [showThumbnails]="imagenes.length > 1"
       [showIndicators]="false"
       [showItemNavigatorsOnHover]="false">
       <ng-template pTemplate="item" let-item>
         <div class="kb-gallery-img-wrap">
           <img
-            [src]="item.url"
-            [alt]="item.alt || 'Prenda Kosta Brava'"
+            [src]="currentImage?.url ?? item.url"
+            [alt]="currentImage?.alt || item.alt || 'Prenda Kosta Brava'"
             class="kb-gallery-img"
-            loading="lazy">
+            loading="eager"
+            decoding="async"
+            [attr.data-slide]="activeIndex">
         </div>
       </ng-template>
       <ng-template pTemplate="thumbnail" let-item>
@@ -45,7 +65,8 @@
             [src]="item.url"
             [alt]="item.alt || ''"
             class="kb-gallery-thumb"
-            loading="lazy">
+            loading="lazy"
+            decoding="async">
         </div>
       </ng-template>
     </p-galleria>

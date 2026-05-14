@@ -19,7 +19,7 @@
     <div class="row g-3">
       <div
         class="col-6 col-md-4 col-lg-3"
-        *ngFor="let c of catalogo!.categorias!">
+        *ngFor="let c of catalogo!.categorias!; let i = index">
         <div
           class="kb-prod-card"
           role="button"
@@ -29,7 +29,12 @@
           (keydown.enter)="abrir_imagenes(c.hijos!)"
           (keydown.space)="abrir_imagenes(c.hijos!)">
           <div class="kb-prod-img-wrap">
-            <img [src]="c.url" [alt]="c.clasificacion" class="kb-prod-img" loading="lazy">
+            <img
+              [src]="c.url"
+              [alt]="c.clasificacion"
+              class="kb-prod-img"
+              [attr.loading]="i < 8 ? 'eager' : 'lazy'"
+              [attr.fetchpriority]="i === 0 ? 'high' : null">
             <div class="kb-prod-overlay" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
             </div>

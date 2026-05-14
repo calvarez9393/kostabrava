@@ -1,4 +1,4 @@
-import { Component, HostListener, inject } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Offcanvas } from 'bootstrap';
 
@@ -8,12 +8,17 @@ import { Offcanvas } from 'bootstrap';
   styleUrls: ['./menu.component.css'],
   standalone: false,
 })
-export class MenuComponent {
+export class MenuComponent implements AfterViewInit {
   private readonly router = inject(Router);
 
   scrolled = false;
   /** Desplaza el fondo del menú móvil al hacer scroll (efecto parallax). */
   parallaxBgShift = '0px';
+
+  ngAfterViewInit(): void {
+    const panel = document.getElementById('kbMobileNav');
+    panel?.addEventListener('hidden.bs.offcanvas', () => this.cleanupOffcanvasUi());
+  }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -38,7 +43,10 @@ export class MenuComponent {
     }
 
     const inst = Offcanvas.getInstance(panel) ?? Offcanvas.getOrCreateInstance(panel);
-    const proceed = () => this.goHomeAndScroll(fragment);
+    const proceed = () => {
+      this.cleanupOffcanvasUi();
+      this.goHomeAndScroll(fragment);
+    };
 
     if (panel.classList.contains('show')) {
       let finished = false;
@@ -49,9 +57,17 @@ export class MenuComponent {
         finished = true;
         proceed();
       };
+      // Importante: no navegar antes del evento `hidden` (si no, el backdrop puede quedar colgado).
       panel.addEventListener('hidden.bs.offcanvas', runOnce, { once: true });
       inst.hide();
-      setTimeout(runOnce, 650);
+      // Fallback largo: solo si Bootstrap no emitió `hidden` (p. ej. transición muy lenta).
+      setTimeout(() => {
+        if (!finished) {
+          panel.classList.remove('show');
+          this.cleanupOffcanvasUi();
+          runOnce();
+        }
+      }, 1600);
     } else {
       proceed();
     }
@@ -60,14 +76,26 @@ export class MenuComponent {
   private goHomeAndScroll(fragment: string | null): void {
     if (!fragment) {
       void this.router.navigate(['/']).then(() => {
+        this.cleanupOffcanvasUi();
         setTimeout(() => globalThis.scrollTo({ top: 0, behavior: 'smooth' }), 80);
       });
       return;
     }
 
     void this.router.navigate(['/'], { fragment }).then(() => {
+      this.cleanupOffcanvasUi();
       setTimeout(() => this.scrollToFragment(fragment), 200);
     });
+  }
+
+  /** Quita backdrop y estilos que a veces quedan al cerrar offcanvas + navegar con el router. */
+  private cleanupOffcanvasUi(): void {
+    document.querySelectorAll('.offcanvas-backdrop').forEach((el) => el.remove());
+    document.body.classList.remove('offcanvas-backdrop');
+    document.body.removeAttribute('data-bs-overflow');
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('padding-right');
+    document.documentElement.style.removeProperty('overflow');
   }
 
   private scrollToFragment(id: string): void {

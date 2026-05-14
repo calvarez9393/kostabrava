@@ -264,22 +264,39 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-/* Galleria nav arrows */
+/* Galleria nav arrows (PrimeNG 21: botones prev/next) */
+.kb-gallery-window .p-galleria .p-galleria-prev-button,
+.kb-gallery-window .p-galleria .p-galleria-next-button {
+  background: rgba(165, 29, 54, 0.65) !important;
+  border-radius: 50% !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  min-width: 3rem !important;
+  min-height: 3rem !important;
+  color: #fff !important;
+  margin: 0 0.5rem !important;
+  z-index: 40 !important;
+  pointer-events: auto !important;
+  transition: background-color 200ms !important;
+}
+
+.kb-gallery-window .p-galleria .p-galleria-prev-button:hover,
+.kb-gallery-window .p-galleria .p-galleria-next-button:hover {
+  background: var(--kb-red) !important;
+}
+
+/* Compat PrimeNG antiguo (por si acaso) */
 .kb-gallery-window .p-galleria .p-galleria-item-nav {
   background: rgba(165, 29, 54, 0.65) !important;
   border-radius: 50% !important;
   width: 3rem !important;
   height: 3rem !important;
   color: #fff !important;
-  margin: 0 0.5rem !important;
-  transition: background-color 200ms !important;
+  z-index: 40 !important;
 }
 
-.kb-gallery-window .p-galleria .p-galleria-item-nav:hover {
-  background: var(--kb-red) !important;
-}
-
-/* Thumbnail strip */
+/* Franja de miniaturas (PrimeNG 21) */
+.kb-gallery-window .p-galleria .p-galleria-thumbnails,
 .kb-gallery-window .p-galleria .p-galleria-thumbnail-container {
   background-color: #0c0d10 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
@@ -287,19 +304,21 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem !important;
 }
 
-.kb-gallery-window .p-galleria .p-galleria-thumbnail-item-current
-  .p-galleria-thumbnail-item-content img {
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item-current img,
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item-current .p-galleria-thumbnail-item-content img {
   opacity: 1 !important;
   box-shadow: 0 0 0 2px var(--kb-red) !important;
   border-radius: 5px !important;
 }
 
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item img,
 .kb-gallery-window .p-galleria .p-galleria-thumbnail-item-content img {
   opacity: 0.45 !important;
   transition: opacity 200ms !important;
   border-radius: 5px !important;
 }
 
+.kb-gallery-window .p-galleria .p-galleria-thumbnail-item:hover img,
 .kb-gallery-window .p-galleria .p-galleria-thumbnail-item-content:hover img {
   opacity: 1 !important;
 }
