@@ -1,16 +1,42 @@
 <main>
 
-  <!-- ── Hero (parallax) ────────────────────────────────── -->
+  <!-- ── Hero (video banner) ──────────────────────────────── -->
   <section class="kb-hero" aria-labelledby="hero-heading">
-    <div
-      class="kb-hero-bg"
-      [style.transform]="heroParallax"
-      aria-hidden="true">
+    <div class="kb-hero-video-wrap" aria-hidden="true">
+      <video
+        class="kb-hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        src="assets/kostabrava_video/IMG_5959.mp4">
+      </video>
+      <div class="kb-hero-overlay"></div>
     </div>
-    <h1 id="hero-heading" class="kb-hero-h1">
-      Dotaciones y Uniformes Empresariales en Colombia — Kosta Brava
-    </h1>
+    <div class="kb-hero-content container-fluid px-4 px-lg-5">
+      <p class="kb-hero-eyebrow">Confección colombiana · 55 años de experiencia</p>
+      <h1 id="hero-heading" class="kb-hero-heading">
+        Dotaciones y<br>Uniformes Empresariales
+      </h1>
+      <p class="kb-hero-sub">
+        Diseño, calidad y trayectoria para vestir la imagen profesional de tu empresa
+      </p>
+      <div class="kb-hero-actions">
+        <a [routerLink]="[]" fragment="catalogo" class="kb-hero-btn-primary">Ver Catálogo</a>
+        <a [routerLink]="[]" fragment="contacto" class="kb-hero-btn-ghost">Solicitar cotización</a>
+      </div>
+    </div>
   </section>
+
+  <!-- ── Banner image ──────────────────────────────────────── -->
+  <div class="kb-banner-img-wrap" aria-hidden="true">
+    <img
+      src="assets/banners/BANNER_PRINCIPAL_desktop-01-2048x930.jpg"
+      alt="Kosta Brava — Dotaciones y Uniformes Empresariales"
+      class="kb-banner-img"
+      loading="eager">
+  </div>
 
   <!-- ══ Quiénes Somos ══════════════════════════════════════ -->
   <section id="quienes-somos">
@@ -275,6 +301,58 @@
               alt="Equipo de trabajo Kosta Brava"
               class="kb-round-img">
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ Amor a Nuestro Trabajo ════════════════════════════ -->
+  <section id="nuestro-trabajo">
+
+    <div class="kb-title-band">
+      <div class="container-fluid px-4 px-lg-5">
+        <p class="kb-title-band-eyebrow" [kbReveal]="0">Hecho con pasión</p>
+        <h2 class="kb-title-band-heading" [kbReveal]="90">Amor a Nuestro Trabajo</h2>
+        <p class="kb-title-band-sub" [kbReveal]="180">
+          Cada prenda nace de manos comprometidas. Así se ve la confección colombiana por dentro.
+        </p>
+      </div>
+    </div>
+
+    <div class="kb-craft-canvas">
+      <div class="container-fluid px-4 px-lg-5">
+        <div class="kb-craft-grid">
+
+          <div class="kb-craft-item kb-craft-item--1 kb-reveal-from-left" [kbReveal]="0">
+            <video muted playsinline preload="metadata" controls class="kb-craft-video"
+              src="assets/kostabrava_video/IMG_5914.mp4"></video>
+          </div>
+
+          <div class="kb-craft-item kb-craft-item--2" [kbReveal]="120">
+            <video muted playsinline preload="metadata" controls class="kb-craft-video"
+              src="assets/kostabrava_video/IMG_5933.mp4"></video>
+          </div>
+
+          <div class="kb-craft-item kb-craft-item--3 kb-reveal-from-right" [kbReveal]="0">
+            <video muted playsinline preload="metadata" controls class="kb-craft-video"
+              src="assets/kostabrava_video/IMG_5939.mp4"></video>
+          </div>
+
+          <div class="kb-craft-item kb-craft-item--4 kb-reveal-from-left" [kbReveal]="0">
+            <video muted playsinline preload="metadata" controls class="kb-craft-video"
+              src="assets/kostabrava_video/IMG_5948.mp4"></video>
+          </div>
+
+          <div class="kb-craft-item kb-craft-item--5" [kbReveal]="120">
+            <video muted playsinline preload="metadata" controls class="kb-craft-video"
+              src="assets/kostabrava_video/IMG_5950.mp4"></video>
+          </div>
+
+          <div class="kb-craft-item kb-craft-item--6 kb-reveal-from-right" [kbReveal]="0">
+            <video muted playsinline preload="metadata" controls class="kb-craft-video"
+              src="assets/kostabrava_video/IMG_5959.mp4"></video>
+          </div>
+
         </div>
       </div>
     </div>

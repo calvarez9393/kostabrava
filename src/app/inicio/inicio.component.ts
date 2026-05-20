@@ -1,5 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 export interface Item {
   url: string;
@@ -21,25 +20,6 @@ export interface Empleado {
   standalone: false,
 })
 export class InicioComponent implements OnInit {
-
-  scrollY = 0;
-  private rafPending = false;
-
-  @HostListener('window:scroll', [])
-  onWindowScroll(): void {
-    if (!this.rafPending) {
-      window.requestAnimationFrame(() => {
-        this.scrollY = window.scrollY;
-        this.rafPending = false;
-      });
-      this.rafPending = true;
-    }
-  }
-
-  get heroParallax(): string {
-    const shift = Math.min(this.scrollY * 0.28, 160);
-    return `translateY(${shift}px)`;
-  }
 
   empleados: Empleado[] = [
     {
