@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 export interface Item {
   url: string;
@@ -19,7 +19,21 @@ export interface Empleado {
   styleUrls: ['./inicio.component.css'],
   standalone: false,
 })
-export class InicioComponent implements OnInit {
+export class InicioComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('heroVid') heroVidRef!: ElementRef<HTMLVideoElement>;
+
+  ngAfterViewInit(): void {
+    const v = this.heroVidRef.nativeElement;
+    v.muted = true;
+    v.play().catch(() => {});
+  }
+
+  onHeroEnded(): void {
+    const v = this.heroVidRef.nativeElement;
+    v.currentTime = 0;
+    v.play().catch(() => {});
+  }
 
   empleados: Empleado[] = [
     {

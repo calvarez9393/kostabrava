@@ -4,13 +4,14 @@
   <section class="kb-hero" aria-labelledby="hero-heading">
     <div class="kb-hero-video-wrap" aria-hidden="true">
       <video
+        #heroVid
         class="kb-hero-video"
         autoplay
         muted
-        loop
         playsinline
         preload="auto"
-        src="assets/kostabrava_video/IMG_5959.mp4">
+        src="assets/kostabrava_video/IMG_5959.mp4"
+        (ended)="onHeroEnded()">
       </video>
       <div class="kb-hero-overlay"></div>
     </div>
