@@ -16,7 +16,7 @@
       <div class="kb-hero-overlay"></div>
     </div>
     <div class="kb-hero-content container-fluid px-4 px-lg-5">
-      <p class="kb-hero-eyebrow">Confección colombiana · 55 años de experiencia</p>
+      <p class="kb-hero-eyebrow">Confección colombiana · {{ textoAniosExperiencia }}</p>
       <h1 id="hero-heading" class="kb-hero-heading">
         Dotaciones y<br>Uniformes Empresariales
       </h1>
@@ -54,21 +54,23 @@
     <div class="kb-section">
       <div class="container-fluid px-4 px-lg-5">
         <div class="row align-items-center g-5">
-          <div class="col-md-6" [kbReveal]="0">
+          <div class="col-12 col-md-6 kb-quienes-video-col" [kbReveal]="0">
             <div class="kb-video-wrap">
               <iframe
                 src="https://drive.google.com/file/d/1HjOFdkhIM8c3tAMyBu5S53xAzM4YRt0v/preview"
                 title="Video corporativo Kosta Brava"
-                allow="autoplay"
                 class="kb-iframe"
-                loading="lazy">
+                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
               </iframe>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-12 col-md-6">
             <p class="kb-body" [kbReveal]="0">
               Kosta Brava es la marca de Dotaciones de Kosta Azul, empresa colombiana con más de
-              <strong>55 años de experiencia</strong> en el mercado textil y de confecciones.
+              <strong>{{ textoAniosExperiencia }}</strong> en el mercado textil y de confecciones.
             </p>
             <p class="kb-body" [kbReveal]="80">
               Somos especialistas en el diseño, desarrollo, producción y comercialización de prendas de vestir,
@@ -76,7 +78,7 @@
             </p>
             <div class="kb-stats" [kbReveal]="160">
               <div class="kb-stat">
-                <span class="kb-stat-num">55+</span>
+                <span class="kb-stat-num">{{ aniosEmpresa }}+</span>
                 <span class="kb-stat-label">Años de experiencia</span>
               </div>
               <div class="kb-stat">
@@ -243,7 +245,7 @@
     <div class="container-fluid px-4 px-lg-5">
       <div class="kb-band-inner">
         <p class="kb-band-eyebrow" [kbReveal]="0">Nuestra trayectoria</p>
-        <h2 class="kb-band-title" [kbReveal]="100">55 años confeccionando<br>calidad colombiana</h2>
+        <h2 class="kb-band-title" [kbReveal]="100">{{ aniosEmpresa }} años confeccionando<br>calidad colombiana</h2>
         <a href="#contacto" class="kb-band-cta" [kbReveal]="200">Solicitar cotización</a>
       </div>
     </div>
@@ -286,7 +288,7 @@
                 <span class="kb-check-icon" aria-hidden="true">
                   <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                 </span>
-                Más de 55 años de experiencia en confecciones colombianas
+                {{ textoMasDeAniosExperiencia }} en confecciones colombianas
               </li>
               <li class="kb-feature-item">
                 <span class="kb-check-icon" aria-hidden="true">

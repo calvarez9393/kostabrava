@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { aniosDesdeFundacion } from '../anios-empresa';
 
 @Component({
   selector: 'app-footer',
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
   readonly currentYear = new Date().getFullYear();
+  readonly aniosEmpresa = aniosDesdeFundacion();
 }

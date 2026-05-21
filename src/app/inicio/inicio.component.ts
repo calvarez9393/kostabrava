@@ -1,4 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  aniosDesdeFundacion,
+  textoAniosExperiencia,
+  textoMasDeAniosExperiencia,
+} from '../anios-empresa';
 
 export interface Item {
   url: string;
@@ -20,6 +25,10 @@ export interface Empleado {
   standalone: false,
 })
 export class InicioComponent implements OnInit, AfterViewInit {
+  /** Años desde el 16/09/1964 (fundación de Kosta Azul). */
+  readonly aniosEmpresa = aniosDesdeFundacion();
+  readonly textoAniosExperiencia = textoAniosExperiencia();
+  readonly textoMasDeAniosExperiencia = textoMasDeAniosExperiencia();
 
   @ViewChild('heroVid') heroVidRef!: ElementRef<HTMLVideoElement>;
 
